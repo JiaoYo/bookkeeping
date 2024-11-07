@@ -42,6 +42,7 @@ export default ({ command, mode }) => {
     server: {
       host: '0.0.0.0',
       hmr: true,
+      port: 3000,
       // 仅 H5 端生效，其他端不生效（其他端走build，不走devServer)
       proxy: JSON.parse(VITE_APP_PROXY)
         ? {

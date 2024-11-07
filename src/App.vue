@@ -15,4 +15,7 @@
 <style lang="scss">
   /*每个页面公共css */
   @import 'nutui-uniapp/styles/index.scss';
+page {
+	background-color:#f1f2f6;
+}
 </style>
