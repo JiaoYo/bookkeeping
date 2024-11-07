@@ -77,9 +77,9 @@ const NavChange = (e) => {
   }
 
   uni.setNavigationBarTitle({
-    title
+    title: title.value
   });
-  uni.setNavigationStyle('custom')
+  // uni.setNavigationStyle('custom')
 
 }
 const PageCur = ref('zhangdan')
@@ -94,6 +94,7 @@ const PageCur = ref('zhangdan')
 .box {
   margin: 20upx 0;
   background-color: #f0f4f4;
+  padding-bottom: 52px;
 }
 
 .box view.cu-bar {

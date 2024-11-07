@@ -43,11 +43,17 @@
         </template>
       </nut-grid-item>
     </nut-grid>
+    <lineChart class="box-shadow "/>
+    <pieChart class="box-shadow "/>
+    <barChart class="box-shadow "/>
   </div>
   <tab-bar></tab-bar>
 </template>
 <script setup lang="ts">
 import { formatDate } from '@/utils/common'
+import lineChart from './modules/lineChart'
+import pieChart from './modules/pieChart'
+import barChart from './modules/barChart'
 const tabvalue = ref('0')
 
 const show = ref<boolean>(false)
