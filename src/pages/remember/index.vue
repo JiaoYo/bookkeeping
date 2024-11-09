@@ -114,10 +114,6 @@ const expenditureList = [
     icon: 'icon-yule'
   },
   {
-    text: '运动',
-    icon: 'icon-touzi'
-  },
-  {
     text: '投资',
     icon: 'icon-touzi'
   },

@@ -9,56 +9,54 @@
     <view class="my-10px p-14px box-shadow">
       <text class="color-#999 font-size-16px">本月支出</text>
       <view class="flex justify-between items-center my-10px">
-        <text class="color-#000 font-size-24px font-700">￥{{ numbers.expenditure }}</text>
-        <nut-icon name="eye"></nut-icon>
+        <text class="color-#000 font-size-24px font-700">￥{{ isEye ? numbers.expenditure : '⁕⁕⁕' }}</text>
+        <i class="iconfont icon-yanjing_xianshi_o" @click="isEye = !isEye" v-if="isEye"></i>
+        <i class="iconfont icon-yanjing_yincang_o" @click="isEye = !isEye" v-else></i>
       </view>
       <view class="flex justify-between items-center">
         <view>
           <text class="color-#999 font-size-16px mr-8px">本月收入</text>
-          <text class="font-size-16px">{{ numbers.income ? `￥${numbers.income}` : '暂无收入' }}</text>
+          <text class="font-size-16px">{{ isEye ? (numbers.income ? `￥${numbers.income}` : '暂无收入') : '⁕⁕⁕' }}</text>
         </view>
         <view>
           <text class="color-#999 font-size-16px  mr-8px">本月预算</text>
-          <text class="font-size-16px" @click="setBudget">{{ numbers.budget ? `￥${numbers.budget}` : '未设置预算' }}</text>
+          <text class="font-size-16px" @click="setBudget">{{ isEye ? (numbers.budget ? `￥${numbers.budget}` :
+            '未设置预算') : '⁕⁕⁕'
+            }}</text>
         </view>
       </view>
-      <!-- <view class="flex justify-center mt-10px">
-        <view class="c-#439afc flex items-center font-size-16px mt-10px">
-          <nut-icon name="link"></nut-icon>
-          <text class="ml-6px">查看图表分析</text>
-        </view>
-      </view> -->
     </view>
 
     <view class="c-#000 mt-20px mb-10px ml-10px">
-      今日支出 {{ '￥' + getRandomNum(100, 1000) }}<text class="ml-15px"> 收入 </text>{{ '￥' + getRandomNum(100, 1000) }}
+      今日支出 {{ '￥' + dayIncomeAndExpenditure.expenditure }}<text class="ml-15px"> 收入 </text>{{ '￥' +
+        dayIncomeAndExpenditure.income }}
     </view>
 
     <view class="my-10px p-14px box-shadow flex justify-between items-center">
       <view class="flex justify-between items-center">
-        <nut-icon name="follow"></nut-icon>
+        <i class="iconfont icon-yifu"></i>
         <view class="flex flex-col ml-10px">
           <text>衣服</text>
-          <text class="font-size-14px color-#999 mt-5px">备注</text>
+          <text class="font-size-14px color-#999 mt-5px">人靠衣装马靠鞍</text>
         </view>
       </view>
-      <view class="flex flex-col ml-10px">
-        <text font-540>{{ '￥' + getRandomNum(100, 1000) }}</text>
+      <view class="flex flex-col ml-10px text-right">
+        <text font-540>{{ '￥ −' + 888 }}</text>
         <text class="font-size-14px color-#999 mt-5px">今天15:09</text>
       </view>
     </view>
 
     <view class="my-10px p-14px box-shadow flex justify-between items-center">
       <view class="flex justify-between items-center">
-        <nut-icon name="follow"></nut-icon>
+        <i class="iconfont icon-xinzi"></i>
         <view class="flex flex-col ml-10px">
-          <text>衣服</text>
-          <text class="font-size-14px color-#999 mt-5px">备注</text>
+          <text>薪资</text>
+          <text class="font-size-14px color-#999 mt-5px">发工资了</text>
         </view>
       </view>
-      <view class="flex flex-col ml-10px">
-        <text font-540>{{ '￥' + getRandomNum(100, 1000) }}</text>
-        <text class="font-size-14px color-#999 mt-5px">今天15:09</text>
+      <view class="flex flex-col ml-10px text-right">
+        <text font-540>{{ '￥ +' + 666 }}</text>
+        <text class="font-size-14px color-#999 mt-5px">今天17:09</text>
       </view>
     </view>
   </div>
@@ -67,8 +65,8 @@
       设置预算
     </view>
     <view class="mt-20px flex justify-center">
-      <nut-input-number :max="100000000" v-model="numbers.budgetInput" placeholder="请输入预算金额" step="10" decimal-places="2"
-        input-width="100" button-size="30"></nut-input-number>
+      <nut-input-number :max="100000000" v-model="numbers.budgetInput" placeholder="请输入预算金额" step="10"
+        decimal-places="2" input-width="100" button-size="30"></nut-input-number>
     </view>
     <view class="mt-20px flex justify-around">
       <view>
@@ -88,11 +86,19 @@ export default defineComponent({
 })
 </script>
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 const searchValue = ref('')
-const numbers = ref({
+const isEye = ref(true) // 是否显示本月收支
+// 今日收支
+const dayIncomeAndExpenditure = ref({
   income: 666, // 收入
-  budget: 0, // 预算
-  budgetInput: 0, // 预算输入框
+  expenditure: 888, // 支出
+})
+// 本月
+const numbers:any = ref({
+  income: 666, // 收入
+  budget: 1000, // 预算
+  budgetInput: undefined, // 预算输入框
   expenditure: 888, // 支出
   visible: false, // 是否显示预算弹窗
 })
@@ -105,10 +111,6 @@ const isok = () => {
   // req
   numbers.value.budget = numbers.value.budgetInput
   numbers.value.visible = false
-}
-const getRandomNum = (min: number, max: number): number => {
-  const randomNum = Math.random() * (max - min) + min;
-  return parseFloat(randomNum.toFixed(2));
 }
 </script>
 <style lang="scss">

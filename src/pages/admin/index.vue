@@ -1,4 +1,5 @@
 <template>
+  <nut-notify></nut-notify>
   <nut-turntable class="turntable" ref="turntable" :width="luckWidth" :height="luckheight" :prize-list="prizeList"
     :turns-number="turnsNumber" :turns-time="turnsTime" :prize-index="prizeIndex" :style-opt="styleOpt"
     :pointer-style="pointerStyle" @start-turns="startTurns" @end-turns="endTurns">
@@ -7,7 +8,9 @@
 </template>
 <script setup lang="ts">
 import { ref, reactive } from "vue";
-const turntable = ref(null);
+import { useNotify } from "nutui-uniapp/composables";
+const notify = useNotify();
+const turntable: any = ref(null);
 // 转盘大小
 const luckWidth = ref("300px");
 const luckheight = ref("300px");
@@ -81,15 +84,18 @@ const styleOpt = reactive({
 });
 // 中奖的奖品的index(此数据可根据后台返回的值重新赋值)
 const prizeIndex = ref(-1);
-// 剩余抽奖次数
-const num = ref(5);
 const startTurns = () => {
   const index = Math.floor(Math.random() * prizeList.value.length);
   prizeIndex.value = index;
   turntable.value?.rotateTurn();
 };
 const endTurns = () => {
-  console.log("中奖了");
+  if (prizeIndex.value === 5) {
+    notify.danger(`什么也没有，下次再接再厉`);
+    return
+  }
+  console.log("抽奖结束");
+  notify.success(`恭喜你! 抽中了${prizeList.value[prizeIndex.value].prizeName}一个`);
 };
 </script>
 <script lang='ts'>
@@ -98,4 +104,8 @@ export default defineComponent({
   options: { styleIsolation: 'shared' },
 })
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.nut-turntable {
+  background-color: #000 !important;
+}
+</style>

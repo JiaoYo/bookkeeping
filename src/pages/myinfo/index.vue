@@ -7,9 +7,22 @@
             src="https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png" />
         </template>
       </nut-cell>
-      <nut-cell title="邮箱">
+      <nut-cell>
+        <template #default>
+          <div class="flex justify-between items-center w-100%">
+            <span>邮箱</span>
+            <span>138****1234@163.com</span>
+          </div>
+        </template>
       </nut-cell>
-      <nut-cell title="手机号"></nut-cell>
+      <nut-cell>
+        <template #default>
+          <div class="flex justify-between items-center w-100%">
+            <span>手机号</span>
+            <span>138****1234</span>
+          </div>
+        </template>
+      </nut-cell>
     </nut-cell-group>
     <nut-cell-group title="">
       <nut-cell title="隐私设置" is-link></nut-cell>

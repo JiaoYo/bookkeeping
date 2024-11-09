@@ -25,9 +25,11 @@
       <nut-date-picker v-if="tabvalue === '1'" v-model="currentDate" type="year-month" :min-date="minDate"
         :max-date="maxDate" is-show-chinese @confirm="onConfirm" @cancel="show = false">
       </nut-date-picker>
-      <nut-date-picker v-if="tabvalue === '2'" v-model="currentDate" type="year" :min-date="minDate" :max-date="maxDate"
-        is-show-chinese @confirm="onConfirm" @cancel="show = false">
-      </nut-date-picker>
+      <div class="year">
+        <nut-date-picker v-if="tabvalue === '2'" v-model="currentDate" type="year-month" :min-date="minDate"
+          :max-date="maxDate" is-show-chinese @confirm="onConfirm" :formatter="formatter" @cancel="show = false">
+        </nut-date-picker>
+      </div>
     </nut-popup>
     <div class="mb-8px">
       <nut-grid :column-num="2">
@@ -70,21 +72,23 @@ import { formatDate } from '../../utils/common'
 import lineChart from './modules/lineChart.vue'
 import pieChart from './modules/pieChart.vue'
 import barChart from './modules/barChart.vue'
+import type { DatePickerColumnType, PickerOption, DatePickerBaseEvent } from 'nutui-uniapp'
 const tabvalue = ref('0')
 
 const show = ref<boolean>(false)
-const popupDesc = ref<string>(formatDate(0, new Date()))
+const popupDesc = ref<any>(formatDate(0, new Date()))
 const minDate = new Date(1974, 0, 1)
 const maxDate = new Date(2099, 10, 1)
-const currentDate = ref<Date>(formatDate(0, new Date()))
+const currentDate = ref<any>(formatDate(0, new Date()))
 
 const handleTabsChange = (option: any) => {
   if (option.paneKey === '0') {
-    popupDesc.value = currentDate.value = formatDate(0,  new Date())
+    popupDesc.value = currentDate.value = formatDate(0, new Date())
   } else if (option.paneKey === '1') {
-    popupDesc.value = currentDate.value = formatDate(3,  new Date())
+    popupDesc.value = currentDate.value = formatDate(3, new Date())
   } else if (option.paneKey === '2') {
-    popupDesc.value = currentDate.value = formatDate(4,  new Date())
+    currentDate.value = formatDate(3, new Date())
+    popupDesc.value = currentDate.value.slice(0, 4)
   }
 }
 function onConfirm({ date, selectedValue, selectedOptions }: DatePickerBaseEvent) {
@@ -96,6 +100,19 @@ function onConfirm({ date, selectedValue, selectedOptions }: DatePickerBaseEvent
     popupDesc.value = formatDate(4, selectedValue)
   }
   show.value = false
+}
+function formatter(type: DatePickerColumnType, option: PickerOption) {
+  switch (type) {
+    case 'year':
+      option.text += '年'
+      break
+    case 'month':
+      option.text = ''
+      break
+    default:
+      option.text += ''
+  }
+  return option
 }
 </script>
 <style lang="scss" scoped>
@@ -115,5 +132,11 @@ function onConfirm({ date, selectedValue, selectedOptions }: DatePickerBaseEvent
 :deep(.date .nut-cell) {
   padding: 14px !important;
   align-items: center
+}
+
+:deep(.year .nut-picker picker-view picker-view-column) {
+  &:last-child {
+    display: none !important;
+  }
 }
 </style>
