@@ -10,7 +10,7 @@
     {
       "path": "pages/tabBar/index",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "智账"
       }
     }
   ],

@@ -59,9 +59,6 @@ importers:
       axios:
         specifier: ^1.6.8
         version: 1.6.8
-      echarts:
-        specifier: ^5.5.1
-        version: 5.5.1
       nutui-uniapp:
         specifier: ^1.8.0
         version: 1.8.0(@uni-helper/uni-app-types@1.0.0-alpha.5(typescript@5.6.2)(vue@3.2.47))(vue@3.2.47)
@@ -2587,9 +2584,6 @@ packages:
 
   duplexer@0.1.2:
     resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}
-
-  echarts@5.5.1:
-    resolution: {integrity: sha512-Fce8upazaAXUVUVsjgV6mBnGuqgO+JNDlcgF79Dksy4+wgGpQB2lmYoO4TSweFg/mZITdpGHomw/cNBJZj1icA==}
 
   editor@1.0.0:
     resolution: {integrity: sha512-SoRmbGStwNYHgKfjOrX2L0mUvp9bUVv0uPppZSOMAntEbcFtoC3MKF5b3T6HQPXKIV+QGY3xPO3JK5it5lVkuw==}
@@ -5121,9 +5115,6 @@ packages:
   tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
 
-  tslib@2.3.0:
-    resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
-
   tslib@2.7.0:
     resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
 
@@ -5555,9 +5546,6 @@ packages:
   yocto-queue@1.1.1:
     resolution: {integrity: sha512-b4JR1PFR10y1mKjhHY9LaGo6tmrgjit7hxVIeAmyMw3jegXR4dhYqLaQF5zMXZxY7tLpMyJeLjr1C4rLmkVe8g==}
     engines: {node: '>=12.20'}
-
-  zrender@5.6.0:
-    resolution: {integrity: sha512-uzgraf4njmmHAbEUxMJ8Oxg+P3fT04O+9p7gY+wJRVxo8Ge+KmYv0WJev945EH4wFuc4OY2NLXz46FZrWS9xJg==}
 
 snapshots:
 
@@ -9056,11 +9044,6 @@ snapshots:
 
   duplexer@0.1.2: {}
 
-  echarts@5.5.1:
-    dependencies:
-      tslib: 2.3.0
-      zrender: 5.6.0
-
   editor@1.0.0: {}
 
   ee-first@1.1.1: {}
@@ -11995,8 +11978,6 @@ snapshots:
 
   tslib@1.14.1: {}
 
-  tslib@2.3.0: {}
-
   tslib@2.7.0: {}
 
   type-check@0.4.0:
@@ -12454,7 +12435,3 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   yocto-queue@1.1.1: {}
-
-  zrender@5.6.0:
-    dependencies:
-      tslib: 2.3.0

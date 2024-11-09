@@ -1,21 +1,27 @@
 <template>
-  <nut-cell class="flex-col">
-    <view mb-5px>各分类支出占比</view>
-    <div ref="chartRef" style="height: 240px;width: 100%;margin: 0 auto;"></div>
-  </nut-cell>
+  <div class="chart">
+    <view mb-5px font-size-14px class="c-#999">各分类支出占比</view>
+    <view style="width:100%; height:240px"><l-echart ref="chartRef"></l-echart></view>
+  </div>
 </template>
-
+<script lang='ts'>
+import { defineComponent } from 'vue';
+export default defineComponent({
+  options: { styleIsolation: 'shared' },
+})
+</script>
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import * as echarts from 'echarts';
-
-const chartRef = ref(null);
+const echarts = require('../../../uni_modules/lime-echart/static/echarts.min');
+const chartRef: any = ref(null);
 onMounted(() => {
-  if (chartRef.value) {
-    const chart = echarts.init(chartRef.value);
-    chart.setOption({
+  setTimeout(async () => {
+    if (!chartRef.value) return
+    const myChart = await chartRef.value.init(echarts)
+    myChart.setOption({
       tooltip: {
-        trigger: 'item'
+        trigger: 'item',
+        show: false
       },
       legend: {
         show: false,
@@ -24,7 +30,7 @@ onMounted(() => {
       },
       series: [
         {
-          name: 'Access From',
+          name: '',
           type: 'pie',
           radius: ['40%', '70%'],
           avoidLabelOverlap: false,
@@ -41,7 +47,7 @@ onMounted(() => {
           emphasis: {
             label: {
               show: true,
-              fontSize: 40,
+              fontSize: 14,
               fontWeight: 'bold'
             }
           },
@@ -55,9 +61,18 @@ onMounted(() => {
           ]
         }
       ]
-    });
-  }
+    })
+  }, 300)
 });
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.chart {
+  padding: 14px !important;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: var(--nut-cell-box-shadow, 0 1px 7px 0 rgb(237, 238, 241));
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+</style>

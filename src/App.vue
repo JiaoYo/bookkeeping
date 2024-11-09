@@ -15,6 +15,7 @@
 <style lang="scss">
   /*每个页面公共css */
   @import 'nutui-uniapp/styles/index.scss';
+  @import './static/iconfont/iconfont.css';
 page {
 	background-color:#f1f2f6;
 }

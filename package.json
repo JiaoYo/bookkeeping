@@ -61,7 +61,6 @@
     "@uni-helper/axios-adapter": "^1.5.2",
     "@uni-helper/unocss-preset-uni": "^0.2.8",
     "axios": "^1.6.8",
-    "echarts": "^5.5.1",
     "nutui-uniapp": "^1.8.0",
     "pinia": "2.0.32",
     "pinia-plugin-persistedstate": "^3.2.1",

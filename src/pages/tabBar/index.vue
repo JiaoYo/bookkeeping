@@ -10,8 +10,8 @@
       <view class="cu-bar tabbar bg-white shadow foot">
         <view class="action" @click="NavChange" data-cur="zhangdan">
           <view class='cuIcon-cu-image'>
-            <image v-if="PageCur == 'zhangdan'" src="@/static/tabBar/index_cur.png"></image>
-            <image v-if="PageCur != 'zhangdan'" src="@/static/tabBar/index.png"></image>
+            <image v-if="PageCur == 'zhangdan'" src="@/static/tabBar/bill_cur.png"></image>
+            <image v-if="PageCur != 'zhangdan'" src="@/static/tabBar/bill.png"></image>
           </view>
           <view :class="PageCur == 'zhangdan' ? 'color_main' : 'text-gray'">我的账单</view>
         </view>
@@ -19,32 +19,32 @@
         <view class="action" @click="NavChange" data-cur="chart">
           <view class='cuIcon-cu-image'>
             <!-- <view class="cu-tag badge"></view> -->
-            <image v-if="PageCur == 'chart'" src="@/static/tabBar/shop_cur.png"></image>
-            <image v-if="PageCur != 'chart'" src="@/static/tabBar/shop.png"></image>
+            <image v-if="PageCur == 'chart'" src="@/static/tabBar/chart_cur.png"></image>
+            <image v-if="PageCur != 'chart'" src="@/static/tabBar/chart.png"></image>
           </view>
           <view :class="PageCur == 'chart' ? 'color_main' : 'text-gray'">统计分析</view>
         </view>
 
         <view @click="NavChange" class="action text-gray add-action" data-cur="remember">
-          <image v-if="PageCur == 'remember'" class="logo_btn" mode="widthFix" src="@/static/tabBar/jilu_cur.png">
+          <image v-if="PageCur == 'remember'" class="logo_btn" mode="widthFix" src="@/static/tabBar/remember_cur.png">
           </image>
-          <image v-if="PageCur != 'remember'" class="logo_btn" mode="widthFix" src="@/static/tabBar/jilu.png"></image>
+          <image v-if="PageCur != 'remember'" class="logo_btn" mode="widthFix" src="@/static/tabBar/remember.png"></image>
           <view :class="PageCur == 'remember' ? 'color_main' : 'text-gray'">记一笔</view>
         </view>
 
         <view class="action" @click="NavChange" data-cur="admin">
           <view class='cuIcon-cu-image'>
             <!-- <view class="cu-tag badge">{{message}}</view> -->
-            <image v-if="PageCur == 'admin'" src="@/static/tabBar/order_cur.png"></image>
-            <image v-if="PageCur != 'admin'" src="@/static/tabBar/order.png"></image>
+            <image v-if="PageCur == 'admin'" src="@/static/tabBar/admin_cur.png"></image>
+            <image v-if="PageCur != 'admin'" src="@/static/tabBar/admin.png"></image>
           </view>
           <view :class="PageCur == 'admin' ? 'color_main' : 'text-gray'">预算管理</view>
         </view>
 
         <view class="action" @click="NavChange" data-cur="myinfo">
           <view class='cuIcon-cu-image'>
-            <image v-if="PageCur == 'myinfo'" src="@/static/tabBar/me_cur.png"></image>
-            <image v-if="PageCur != 'myinfo'" src="@/static/tabBar/me.png"></image>
+            <image v-if="PageCur == 'myinfo'" src="@/static/tabBar/myinfo_cur.png"></image>
+            <image v-if="PageCur != 'myinfo'" src="@/static/tabBar/myinfo.png"></image>
           </view>
           <view :class="PageCur == 'myinfo' ? 'color_main' : 'text-gray'">个人中心</view>
         </view>
@@ -61,26 +61,8 @@ import chart from '../chart/index.vue'
 import remember from '../remember/index.vue'
 import admin from '../admin/index.vue'
 import myinfo from '../myinfo/index.vue'
-const title = ref('我的账单')
 const NavChange = (e) => {
   PageCur.value = e.currentTarget.dataset.cur;
-  if (PageCur.value == 'zhangdan') {
-    title.value = ''
-  } else if (PageCur.value == 'chart') {
-    title.value = '统计分析'
-  } else if (PageCur.value == 'remember') {
-    title.value = '记一笔'
-  } else if (PageCur.value == 'admin') {
-    title.value = '预算管理'
-  } else if (PageCur.value == 'myinfo') {
-    title.value = '个人中心'
-  }
-
-  uni.setNavigationBarTitle({
-    title: title.value
-  });
-  // uni.setNavigationStyle('custom')
-
 }
 const PageCur = ref('zhangdan')
 </script>
